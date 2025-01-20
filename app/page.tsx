@@ -16,7 +16,7 @@ export default function Home() {
             <Image src="/am.png" alt="A&M Logo" width={100} height={100} />
           </div>
           <p className="text-lg text-center max-w-prose text-gray-800">
-            The new A&M's Tool to help you price our products and services.
+            The new A&M Tool to help you price our products and services.
           </p>
           <button className="px-8 py-4 bg-gray-800 text-white rounded-full hover:bg-gray-900">
             Get Started
