@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <div className="flex items-center justify-center min-h-screen p-8 pb-20 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-cover bg-center" 
-          style={{ backgroundImage: "url('/amBG.jpg')" }}>
+          style={{ backgroundImage: "url('/amBG.png')" }}>
       <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-4xl">
         {/* Header */}
         <header className="w-full text-center py-4 bg-gray-800 text-white rounded-t-lg">
