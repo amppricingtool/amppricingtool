@@ -1,24 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pricing Tool
+
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app). The Pricing Tool application helps you to easily and accurately price products and services.
+
+## Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- You have installed [Node.js](https://nodejs.org/) (version 14.x or later).
+- You have installed [npm](https://www.npmjs.com/) (comes with Node.js) or [yarn](https://yarnpkg.com/).
+- You have installed [Git](https://git-scm.com/).
 
 ## Getting Started
 
-First, run the development server:
+First, clone the repository:
+
+```bash
+git clone https://github.com/your-username/pricingtool.git
+cd pricingtool/amppricingtool
+```
+
+Then, install the dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+## Running the Development Server
+
+To run the development server, use the following command:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment Variables
+
+Create a `.env.local` file in the root of your project and add the following environment variables:
+
+```plaintext
+EMAIL_USER=your-email-username
+EMAIL_PASS=your-email-password
+```
+
+Replace `your-email-username` and `your-email-password` with your actual email credentials.
+
+## Nodemailer Configuration
+
+This project uses [Nodemailer](https://nodemailer.com/about/) to send emails. To install Nodemailer, run the following command:
+
+```bash
+npm install nodemailer
+# or
+yarn add nodemailer
+```
 
 ## Learn More
 
