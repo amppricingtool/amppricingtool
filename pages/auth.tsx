@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import "../app/globals.css"; // Import the global CSS file
 import Link from "next/link";
+import styles from "./Auth.module.css";
 
 export default function Auth() {
   const [username, setUsername] = useState("");
@@ -13,6 +14,7 @@ export default function Auth() {
   const [view, setView] = useState("login"); // "login", "createAccount", "forgotPassword"
   const [transition, setTransition] = useState(false);
   const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("success");
 
   useEffect(() => {
     setIsVisible(true);
@@ -47,8 +49,10 @@ export default function Auth() {
     });
 
     if (response.ok) {
+      setMessageType("success");
       setMessage(`A password reset email has been sent to ${email}`);
     } else {
+      setMessageType("error");
       setMessage("Failed to send reset email. Please try again.");
     }
   };
@@ -56,40 +60,46 @@ export default function Auth() {
   const handleCreateAccountSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (password !== confirmPassword) {
+      setMessageType("error");
       setMessage("Passwords do not match.");
       return;
     }
     if (password.length < 8) {
+      setMessageType("error");
       setMessage("Password must be at least 8 characters long.");
       return;
     }
     if (!/\d/.test(password)) {
+      setMessageType("error");
       setMessage("Password must contain at least one number.");
       return;
     }
     if (!/[A-Z]/.test(password)) {
+      setMessageType("error");
       setMessage("Password must contain at least one uppercase letter.");
       return;
     }
     if (!/[a-z]/.test(password)) {
+      setMessageType("error");
       setMessage("Password must contain at least one lowercase letter.");
       return;
     }
     if (!/[!@#$%^&*]/.test(password)) {
+      setMessageType("error");
       setMessage("Password must contain at least one special character.");
       return;
     }
     // Handle account creation logic here
+    setMessageType("success");
     setMessage("Account created successfully.");
   };
 
   return (
-    <div className={`flex min-h-screen font-[family-name:var(--font-geist-sans)] bg-cover bg-center transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`} 
-          style={{ backgroundImage: "url('/bgIMG.jpg')" }}>
-      <div className="bg-white shadow-lg w-full max-w-4xl min-h-screen p-8 flex flex-col">
+    <div className={`${styles.container} ${styles.bgImage} ${isVisible ? styles.visible : styles.hidden}`}>
+      <div className={styles.card}>
         {/* Header */}
-        <header className="w-full text-center py-4 bg-gradient-to-r from-gray-800 to-gray-600 text-white rounded-t-lg">
-          <h1 className="text-4xl font-bold text-white">
+        <header className={styles.header}>
+          <h1 className={styles.title}>
             {view === "login" && "Login"}
             {view === "createAccount" && "Create Account"}
             {view === "forgotPassword" && "Forgot Password"}
@@ -97,21 +107,21 @@ export default function Auth() {
         </header>
         
         {/* Main Content */}
-        <main className="flex flex-col items-center justify-center gap-8 mt-8 flex-grow">
-          <div className={`w-full transition-opacity duration-300 ${transition ? 'opacity-0' : 'opacity-100'}`}>
+        <main className={styles.mainContent}>
+          <div className={`${styles.transition} ${transition ? styles.hidden : styles.visible}`}>
             {message && (
-              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4 text-center" role="alert">
-                <span className="block sm:inline">{message}</span>
+              <div className={`${styles.message} ${messageType === "error" ? styles.error : styles.success}`} role="alert">
+                <span>{message}</span>
               </div>
             )}
             {view === "login" && (
-              <form onSubmit={handleSubmit} className="w-full max-w-xs flex flex-col gap-4 mx-auto">
+              <form onSubmit={handleSubmit} className={styles.form}>
                 <input
                   type="text"
                   placeholder="Username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-800 text-gray-800"
+                  className={styles.input}
                   required
                 />
                 <input
@@ -119,28 +129,28 @@ export default function Auth() {
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-800 text-gray-800"
+                  className={styles.input}
                   required
                 />
-                <button type="submit" className="px-4 py-2 mb-4 bg-gray-800 text-white rounded-full hover:bg-gray-900">
+                <button type="submit" className={styles.button}>
                   Login
                 </button>
-                <a onClick={() => handleViewChange("forgotPassword")} className="block text-center text-gray-800 hover:underline cursor-pointer">
+                <a onClick={() => handleViewChange("forgotPassword")} className={styles.link}>
                   Forgot Password?
                 </a>
-                <a onClick={() => handleViewChange("createAccount")} className="block text-center text-gray-800 hover:underline cursor-pointer">
+                <a onClick={() => handleViewChange("createAccount")} className={styles.link}>
                   Create Account
                 </a>
               </form>
             )}
             {view === "createAccount" && (
-              <form onSubmit={handleCreateAccountSubmit} className="w-full max-w-xs flex flex-col gap-4 mx-auto">
+              <form onSubmit={handleCreateAccountSubmit} className={styles.form}>
                 <input
                   type="text"
                   placeholder="Username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-800 text-gray-800"
+                  className={styles.input}
                   required
                 />
                 <input
@@ -148,7 +158,7 @@ export default function Auth() {
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-800 text-gray-800"
+                  className={styles.input}
                   required
                 />
                 <input
@@ -156,7 +166,7 @@ export default function Auth() {
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-800 text-gray-800"
+                  className={styles.input}
                   required
                 />
                 <input
@@ -164,31 +174,41 @@ export default function Auth() {
                   placeholder="Confirm Password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-800 text-gray-800"
+                  className={styles.input}
                   required
                 />
-                <button type="submit" className="px-4 py-2 mb-4 bg-gray-800 text-white rounded-full hover:bg-gray-900">
+                <div className={styles.passwordInfo}>
+                  <p>Password must contain:</p>
+                  <ul>
+                    <li>At least 8 characters</li>
+                    <li>At least one number</li>
+                    <li>At least one uppercase letter</li>
+                    <li>At least one lowercase letter</li>
+                    <li>At least one special character (!@#$%^&*)</li>
+                  </ul>
+                </div>
+                <button type="submit" className={styles.button}>
                   Create Account
                 </button>
-                <a onClick={() => handleViewChange("login")} className="block text-center text-gray-800 hover:underline cursor-pointer">
+                <a onClick={() => handleViewChange("login")} className={styles.link}>
                   Already have an account? Login
                 </a>
               </form>
             )}
             {view === "forgotPassword" && (
-              <form onSubmit={handleForgotPasswordSubmit} className="w-full max-w-xs flex flex-col gap-4 mx-auto">
+              <form onSubmit={handleForgotPasswordSubmit} className={styles.form}>
                 <input
                   type="email"
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="px-2 py-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-800 text-gray-800"
+                  className={styles.input}
                   required
                 />
-                <button type="submit" className="px-4 py-2 mb-4 bg-gray-800 text-white rounded-full hover:bg-gray-900">
+                <button type="submit" className={styles.button}>
                   Reset Password
                 </button>
-                <a onClick={() => handleViewChange("login")} className="block text-center text-gray-800 hover:underline cursor-pointer">
+                <a onClick={() => handleViewChange("login")} className={styles.link}>
                   Back to Login
                 </a>
               </form>
@@ -197,7 +217,7 @@ export default function Auth() {
         </main>
         
         {/* Footer */}
-        <footer className="w-full text-center py-4 bg-gradient-to-r from-gray-800 to-gray-600 text-white rounded-b-lg mt-auto">
+        <footer className={styles.footer}>
           <p>&copy; 2025 Pricing Tool. All rights reserved.</p>
         </footer>
       </div>

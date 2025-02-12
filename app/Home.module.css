@@ -1,0 +1,135 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  font-family: var(--font-geist-sans);
+  text-align: center;
+}
+
+.bgImage {
+  background-image: url('/bgIMG.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.loadingCard {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.header {
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: white;
+  margin-top: 1rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 60rem;
+  background-color: white; 
+  color: #4a5568;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 2rem;
+}
+
+.description {
+  font-size: 1.125rem;
+  max-width: 40rem;
+}
+
+.loginButton {
+  padding: 1rem 2rem;
+  margin-top: 1rem;
+  background-color: #4a5568;
+  color: white;
+  border-radius: 9999px;
+  transition: transform 0.2s;
+}
+
+.loginButton:hover {
+  background-color: #2d3748;
+}
+
+.loading {
+  transform: scale(0.95);
+}
+
+.featuresSection {
+  width: 100%;
+  max-width: 60rem;
+  margin-top: 4rem;
+}
+
+.featuresTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  margin-bottom: 2rem;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 640px) {
+  .featuresGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.featureCard {
+  background-color: white; 
+  color: #4a5568;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.featureTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.footer {
+  width: 100%;
+  padding: 2rem 0;
+  margin-top: 4rem;
+  background-color: #4a5568;
+  color: white;
+  border-radius: 0.5rem;
+}

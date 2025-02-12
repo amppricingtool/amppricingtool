@@ -18,8 +18,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
 
     // Read the HTML content from an external file
-    const htmlPath = path.resolve(process.cwd(), "emails/reset-password.html");
-    const htmlContent = fs.readFileSync(htmlPath, "utf8");
+    const htmlPathReset = path.resolve(process.cwd(), "emails/reset-password.html");
+    const htmlContentReset = fs.readFileSync(htmlPathReset, "utf8");
 
     // Email content
     const mailOptions = {
@@ -27,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       to: email,
       subject: "Pricing Tool - Password Reset",
       text: "You've requested a password reset. Click the link below to reset your password.",
-      html: htmlContent,
+      html: htmlContentReset,
     };
 
     try {
