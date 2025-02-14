@@ -24,7 +24,6 @@ export default function Pricing() {
       style={{
         padding: "20px",
         backgroundColor: "#00244A85",
-
         display: "flex",
       }}
     >
