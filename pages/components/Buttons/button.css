@@ -1,0 +1,56 @@
+/* Botão padrão */
+.button-style {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #002f5f;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  transition: 0.3s;
+  width: 170px; /* Todos os botões terão o mesmo tamanho */
+  height: 35px;
+  text-align: center;
+}
+
+.button-style:hover {
+  background-color: #004080;
+}
+
+/* Ícone dentro do botão */
+.button-icon {
+  font-size: 20px;
+}
+
+/* Estilização do botão de adicionar (redondo) */
+.button-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px; /* Largura fixa */
+  height: 45px; /* Altura fixa */
+  border-radius: 50%; /* Torna o botão redondo */
+  background-color: #002f5f;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+
+  margin-top: 20px;
+}
+
+.button-add:hover {
+  background-color: #004080;
+}
+
+.button-grid {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
