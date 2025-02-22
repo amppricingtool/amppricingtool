@@ -1,0 +1,136 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  MASTER
+  DIRECTOR
+}
+
+model users {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  name     String
+  password String
+  role     Role   @default(DIRECTOR)
+
+  // Um usuário pode criar várias precificações
+  pricings pricings[]
+}
+
+model params {
+  id                    Int     @id @default(autoincrement())
+  semana                Float
+  mes                   Int?
+  corporateallocation   Float?
+  overhead             Float?
+  referalfeefixo        Float?
+  referralfeesuccessfee Float?
+  isspiscofins          Float?
+  targetjc              Float?
+  diascorridosmes       Float?
+  diascorridosano       Float?
+  fimanofiscalam        DateTime? @db.Date
+  fimanofiscalcliente   DateTime? @db.Date
+  payoutmd              Float?
+  targetpayroll         Float?
+
+  // Relacionamento com precificações
+  pricings pricings[]
+
+  // Relacionamento com recursos
+  recursosnivel recursosnivel[]
+}
+
+model pricings {
+  id                             Int       @id @default(autoincrement())
+  idusuario                      Int
+  idparam                        Int
+  inicioprojeto                  DateTime? @db.Date
+  nomefase                       String?
+  receitatotalprojeto            Float?
+  jobcontribution                Float?
+  jobcontributionpercent         Float?
+  descontoganhocomercial         Float?
+  payrollreceita                 Float?
+  taxahoramedia                  Float?
+  jobcontributionzeropercent     Float?
+  jobcontributionquarentapercent Float?
+  totaljobcontribution           Float?
+  somentefixo                    Float?
+  receitavalorprojetadototal     Float?
+  receitafixa                    Float?
+  receitasuccessfee              Float?
+  despesanaoreembolsavel         Float?
+  duracao                        Int?
+  semanames                      String?
+  contagemperiodos               String?
+  alocacaoequipe                 Float?
+  receitabrutatotal              Float?
+  receitabrutafixo               Float?
+  receitabrutaliquida            Float?
+  isspiscofinstotal              Float?
+  isspiscofinsfixo               Float?
+  isspiscofinssf                 Float?
+  receitaliquidatotal            Float?
+  receitaliquidafixo             Float?
+  receitaliquidasf               Float?
+  referraltotal                  Float?
+  referralfixo                   Float?
+  referralsf                     Float?
+  corporateallocationtotal       Float?
+  corporateallocationfixo        Float?
+  corporateallocationsf          Float?
+  overheadtotal                  Float?
+  overheadfixo                   Float?
+  overheadsf                     Float?
+  custoequipe                    Float?
+  despesasnaoreembolsaveis       Float?
+  margemjobcontributiontotal     Float?
+  margemjobcontributionfixo      Float?
+  cashexposureacumulado          Float?
+  duracaomeses                   String?
+  tempoacumuladomeses            String?
+  tamanhomaxequipe               Int?
+  demandahoras                   Int?
+  taxahoramediapadrao            Float?
+  taxahoramediaproposta          Float?
+
+  // Relacionamento com usuários
+  usuario users @relation(fields: [idusuario], references: [id])
+
+  // Relacionamento com os parâmetros
+  param params @relation(fields: [idparam], references: [id])
+
+  // Relacionamento com os recursos utilizados
+  recursos recursosnivel[]
+}
+
+model recursosnivel {
+  id                    Int     @id @default(autoincrement())
+  nivel                 String?
+  recurso               String?
+  baserate              Float?
+  payoutmin             Float?
+  payoutmax             Float?
+  payoutcalculado       Float?
+  custopayout           Float?
+  custotaxfringe        Float?
+  custototal            Float?
+  custotargetoccupation Float?
+  custoestimado         Float?
+  custoinformado        Float?
+  custoutilizado        Float?
+
+  // Relacionamento com params
+  param params @relation(fields: [id], references: [id])
+
+    // Relacionamento inverso com `pricings`
+  pricingId  Int?
+  pricing    pricings? @relation(fields: [pricingId], references: [id])
+}
