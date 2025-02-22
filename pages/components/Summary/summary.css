@@ -1,0 +1,52 @@
+.summary-container {
+  background-color: #e0e6ed; /* Fundo mais claro para destacar a seção */
+  border: 2px solid #002f5f; /* Borda azul escura para destacar */
+  padding: 15px;
+  border-radius: 8px;
+  max-width: 300px; /* Largura fixa para manter alinhamento */
+  font-family: Arial, sans-serif;
+}
+
+.summary-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #002f5f; /* Azul escuro para destacar */
+}
+
+.summary-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ccd6e0; /* Fundo cinza claro para as linhas */
+  padding: 6px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #002f5f; /* Azul escuro */
+}
+
+.summary-label {
+  flex: 1;
+  text-align: left;
+}
+
+.summary-value {
+  background: #5d738a; /* Fundo mais escuro para valores */
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  min-width: 60px;
+  text-align: center;
+}
+
+.percentage {
+  color: #28a745; /* Verde para valores percentuais */
+}

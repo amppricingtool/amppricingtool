@@ -1,0 +1,54 @@
+/* Estilos gerais do formulário */
+.form-container {
+  background-color: white;
+  padding: 10px 100px 100px 100px;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0px auto;
+}
+
+/* Título */
+.form-title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+/* Grid para alinhar os inputs */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+  gap: 30px; /* Espaçamento entre os campos */
+}
+
+/* Estilo dos campos */
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #34495e;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #2f465c;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+/* Efeito de foco nos inputs */
+.input-group input:focus,
+.input-group select:focus {
+  border-color: #2980b9;
+  outline: none;
+  box-shadow: 0 0 5px rgba(41, 128, 185, 0.5);
+}
